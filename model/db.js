@@ -1,4 +1,4 @@
-const { Sequelize } = require('sequelize');
+const { Sequelize, DataTypes } = require('sequelize');
 
 
 const db = new Sequelize({
@@ -6,6 +6,22 @@ const db = new Sequelize({
   database: 'url',
   username:'newsbyte'
 });
+
+const URLs = db.define('urls',{
+    id:{
+        primaryKey:true,
+        type:DataTypes.INTEGER
+    },
+    code:{
+        type:DataTypes.STRING(7),
+        unique:true
+    },
+     link:{
+        
+        type:DataTypes.TEXT,
+        allowNull:false
+    }
+})
 
 
 module.exports={

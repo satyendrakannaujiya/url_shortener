@@ -1,5 +1,6 @@
 const express = require('express');
 const {db} = require('./model/db');
+const linksRoute = require('./routes/links');
 const app = express();
 
 
@@ -9,7 +10,9 @@ app.get('/',(req,res)=>{
      res.send(`Hello ${user} `);
 })
 
-db.authenticate().then(()=>{
+app.use('/api/links',linksRoute);
+
+db.sync().then(()=>{
     console.log("db works");
 }).catch((err)=>{
     console.log(err);
